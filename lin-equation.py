@@ -6,7 +6,7 @@ import dimod
 
 J = {(0,1):5,(0,2):-3/2,(0,3):-3,(1,2):-3,(1,3):-6,(2,3):2}
 
-h = {0:2,1:4,2:-3/2,3:-3}
+h = {0:5/2,1:4,2:-3/2,3:-3}
 model = dimod.BinaryQuadraticModel(h, J, 0.0, dimod.SPIN)
 
 print("The model that we are going to solve is")
@@ -39,9 +39,9 @@ print()
 
 from dwave.system.samplers import DWaveSampler
 from dwave.system.composites import EmbeddingComposite
-sampler = EmbeddingComposite(DWaveSampler(solver='Advantage_system4.1'))
+sampler = EmbeddingComposite(DWaveSampler(solver='Advantage_system5.3'))
 sampler_name = sampler.properties['child_properties']['chip_id']
-response = sampler.sample(model, num_reads=5000)
+response = sampler.sample(model, num_reads=1000)
 print("The solution obtained by D-Wave's quantum annealer",sampler_name,"is")
 print(response)
 print()
@@ -49,3 +49,5 @@ print()
 print()
 print()
 print()
+
+
